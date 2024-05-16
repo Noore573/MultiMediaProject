@@ -26,3 +26,9 @@ d:\دراسة 8\C#+mulitmedia\TheProject\homework\MyWinFormsApp\obj\Debug\net8.0
 d:\دراسة 8\C#+mulitmedia\TheProject\homework\MyWinFormsApp\obj\Debug\net8.0-windows\MyWinFormsApp.pdb
 d:\دراسة 8\C#+mulitmedia\TheProject\homework\MyWinFormsApp\obj\Debug\net8.0-windows\MyWinFormsApp.genruntimeconfig.cache
 d:\دراسة 8\C#+mulitmedia\TheProject\homework\MyWinFormsApp\obj\Debug\net8.0-windows\ref\MyWinFormsApp.dll
+d:\دراسة 8\C#+mulitmedia\TheProject\homework\MyWinFormsApp\bin\Debug\net8.0-windows\Emgu.CV.dll
+d:\دراسة 8\C#+mulitmedia\TheProject\homework\MyWinFormsApp\obj\Debug\net8.0-windows\MyWinFormsApp.csproj.AssemblyReference.cache
+d:\دراسة 8\C#+mulitmedia\TheProject\homework\MyWinFormsApp\obj\Debug\net8.0-windows\MyWinFormsApp.sourcelink.json
+d:\دراسة 8\C#+mulitmedia\TheProject\homework\MyWinFormsApp\obj\Debug\net8.0-windows\MyWinFor.317D71AD.Up2Date
+d:\دراسة 8\C#+mulitmedia\TheProject\homework\MyWinFormsApp\bin\Debug\net8.0-windows\Emgu.CV.Bitmap.dll
+d:\دراسة 8\C#+mulitmedia\TheProject\homework\MyWinFormsApp\bin\Debug\net8.0-windows\System.Drawing.Common.dll

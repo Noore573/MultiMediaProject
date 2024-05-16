@@ -1,13 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "1LYQuoUMThuv+x9RsapnmIedBM5rWGOcjMdRA14nfPJqDs3/f/GthG0vs0hAZaJiDmyJtnLarZ3kDi2FyP7QuA==",
+  "dgSpecHash": "ovhMh5UawhMsC/6bNN6pJzd2Ha4hyF+FL6vT1LK75hziJABfRaLczFTMIsdgEkPSDhXVT29vK2tlHV0uUttckQ==",
   "success": true,
   "projectFilePath": "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\emgu.cv\\4.9.0.5494\\emgu.cv.4.9.0.5494.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\emgu.cv.bitmap\\4.9.0.5494\\emgu.cv.bitmap.4.9.0.5494.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.1\\microsoft.netcore.platforms.1.1.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\system.drawing.common\\8.0.1\\system.drawing.common.8.0.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.drawing.primitives\\4.3.0\\system.drawing.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
