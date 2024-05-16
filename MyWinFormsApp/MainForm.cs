@@ -8,6 +8,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
+
 using Emgu.CV.Structure;
 
 namespace MyWinFormsApp
@@ -21,11 +22,12 @@ namespace MyWinFormsApp
         private PictureBox? pictureBoxColored;
         private Button? btnIdentifyAreas;
         private Button? btnColorAreas;
-        private Button? btnChooseColor; 
+        private Button? btnChooseColor;
         private Button? btnSave;
         private Point? startPoint = null;
         private Point? endPoint = null;
         private Color selectedColor = Color.Red; // Default color
+        private Mat grayscale;
 
         public MainForm()
         {
@@ -33,85 +35,94 @@ namespace MyWinFormsApp
         }
 
         private void InitializeComponent()
+        {
+            // Create a panel to host controls with scrolling enabled
+            Panel panel = new Panel();
+            panel.Dock = DockStyle.Fill;
+            panel.AutoScroll = true;
+
+            // Create controls and set their properties
+            btnBrowse = new Button();
+            btnBrowse.AutoSize = true;
+            btnBrowse.Text = "Browse";
+            btnBrowse.Location = new Point(20, 20);
+            btnBrowse.Click += btnBrowse_Click;
+
+            pictureBoxOriginal = new PictureBox();
+            pictureBoxOriginal.Location = new Point(20, 50);
+            pictureBoxOriginal.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBoxOriginal.MouseDown += pictureBoxOriginal_MouseDown;
+            pictureBoxOriginal.MouseMove += pictureBoxOriginal_MouseMove;
+            pictureBoxOriginal.MouseUp += pictureBoxOriginal_MouseUp;
+
+            pictureBoxColored = new PictureBox();
+            pictureBoxColored.Location = new Point(250, 50);
+            pictureBoxColored.Size = new Size(200, 200);
+
+            btnIdentifyAreas = new Button();
+            btnIdentifyAreas.AutoSize = true;
+            btnIdentifyAreas.Text = "Identify Areas";
+            btnIdentifyAreas.Location = new Point(btnBrowse.Right + 20, 20);
+            btnIdentifyAreas.Click += btnIdentifyAreas_Click;
+
+            btnColorAreas = new Button();
+            btnColorAreas.AutoSize = true;
+            btnColorAreas.Text = "Color Areas";
+            btnColorAreas.Location = new Point(btnIdentifyAreas.Right + 50, 20);
+            btnColorAreas.Click += btnColorAreas_Click;
+
+            // Button for choosing color
+            btnChooseColor = new Button();
+            btnChooseColor.AutoSize = true;
+            btnChooseColor.Text = "Choose Color";
+            btnChooseColor.Location = new Point(btnColorAreas.Right + 50, 20);
+            btnChooseColor.Click += btnChooseColor_Click;
+
+            btnSave = new Button();
+            btnSave.AutoSize = true;
+            btnSave.Text = "Save";
+            btnSave.Location = new Point(btnChooseColor.Right + 50, 20);
+            btnSave.Click += btnSave_Click;
+
+            // Add controls to the panel
+            panel.Controls.Add(btnBrowse);
+            panel.Controls.Add(pictureBoxOriginal);
+            panel.Controls.Add(pictureBoxColored);
+            panel.Controls.Add(btnIdentifyAreas);
+            panel.Controls.Add(btnColorAreas);
+            panel.Controls.Add(btnChooseColor);
+            panel.Controls.Add(btnSave);
+
+            // Add the panel to the form
+            Controls.Add(panel);
+        }
+
+
+        private void btnBrowse_Click(object sender, EventArgs e)
 {
-    // Create a panel to host controls with scrolling enabled
-    Panel panel = new Panel();
-    panel.Dock = DockStyle.Fill;
-    panel.AutoScroll = true;
+    OpenFileDialog openFileDialog = new OpenFileDialog();
+    openFileDialog.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif;*.tif;*.tiff";
 
-    // Create controls and set their properties
-    btnBrowse = new Button();
-    btnBrowse.AutoSize = true;
-    btnBrowse.Text = "Browse";
-    btnBrowse.Location = new Point(20, 20);
-    btnBrowse.Click += btnBrowse_Click;
+    if (openFileDialog.ShowDialog() == DialogResult.OK)
+    {
+        // Load the original image using Bitmap
+        originalImage = new Bitmap(openFileDialog.FileName);
 
-    pictureBoxOriginal = new PictureBox();
-    pictureBoxOriginal.Location = new Point(20, 50);
-    pictureBoxOriginal.SizeMode = PictureBoxSizeMode.AutoSize;
-    pictureBoxOriginal.MouseDown += pictureBoxOriginal_MouseDown;
-    pictureBoxOriginal.MouseMove += pictureBoxOriginal_MouseMove;
-    pictureBoxOriginal.MouseUp += pictureBoxOriginal_MouseUp;
+        // Convert the original image to grayscale using Emgu.CV
+        using (Mat imagetest = CvInvoke.Imread(openFileDialog.FileName, ImreadModes.AnyColor))
+        {
+            grayscale = new Mat();
+            CvInvoke.CvtColor(imagetest, grayscale, ColorConversion.Bgr2Gray);
 
-    pictureBoxColored = new PictureBox();
-    pictureBoxColored.Location = new Point(250, 50);
-    pictureBoxColored.Size = new Size(200, 200);
+            // Convert the grayscale Mat to a Bitmap for display
+            Bitmap grayscaleImage = grayscale.ToBitmap();
 
-    btnIdentifyAreas = new Button();
-    btnIdentifyAreas.AutoSize = true;
-    btnIdentifyAreas.Text = "Identify Areas";
-    btnIdentifyAreas.Location = new Point(btnBrowse.Right + 20, 20);
-    btnIdentifyAreas.Click += btnIdentifyAreas_Click;
-
-    btnColorAreas = new Button();
-    btnColorAreas.AutoSize = true;
-    btnColorAreas.Text = "Color Areas";
-    btnColorAreas.Location = new Point(btnIdentifyAreas.Right + 50, 20);
-    btnColorAreas.Click += btnColorAreas_Click;
-
-    // Button for choosing color
-    btnChooseColor = new Button();
-    btnChooseColor.AutoSize = true;
-    btnChooseColor.Text = "Choose Color";
-    btnChooseColor.Location = new Point(btnColorAreas.Right + 50, 20);
-    btnChooseColor.Click += btnChooseColor_Click;
-
-    btnSave = new Button();
-    btnSave.AutoSize = true;
-    btnSave.Text = "Save";
-    btnSave.Location = new Point(btnChooseColor.Right + 50, 20);
-    btnSave.Click += btnSave_Click;
-
-    // Add controls to the panel
-    panel.Controls.Add(btnBrowse);
-    panel.Controls.Add(pictureBoxOriginal);
-    panel.Controls.Add(pictureBoxColored);
-    panel.Controls.Add(btnIdentifyAreas);
-    panel.Controls.Add(btnColorAreas);
-    panel.Controls.Add(btnChooseColor); 
-    panel.Controls.Add(btnSave);
-
-    // Add the panel to the form
-    Controls.Add(panel);
+            // Display the grayscale image in pictureBoxOriginal
+            pictureBoxOriginal.Image = grayscaleImage;
+        }
+    }
 }
 
-        
-        private void btnBrowse_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif;*.tif;*.tiff";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                originalImage = new Bitmap(openFileDialog.FileName);
-                pictureBoxOriginal.Image = originalImage;
-
-                // // Dynamically position buttons under the image
-                // int btnY = pictureBoxOriginal.Location.Y + pictureBoxOriginal.Height + 10;
-                // btnIdentifyAreas.Location = new Point(20, btnY);
-                // btnColorAreas.Location = new Point(150, btnY);
-                // btnSave.Location = new Point(280, btnY);
-            }
-        }
 
         private void pictureBoxOriginal_MouseDown(object sender, MouseEventArgs e)
         {
@@ -174,53 +185,53 @@ namespace MyWinFormsApp
             // pictureBoxOriginal.Refresh();
         }
 
-      
+
 
         private void btnColorAreas_Click(object sender, EventArgs e)
-{
-    if (originalImage == null)
-    {
-        MessageBox.Show("Please select an image first.");
-        return;
-    }
-
-    // Subscribe to the mouse move event of the original image picture box
-    pictureBoxOriginal.MouseMove += pictureBoxOriginal_MouseMoveForBrush;
-}
-
-private void pictureBoxOriginal_MouseMoveForBrush(object sender, MouseEventArgs e)
-{
-    if (originalImage == null)
-        return;
-
-    // Check if the left mouse button is pressed
-    if (e.Button == MouseButtons.Left)
-    {
-        // Get the coordinates of the mouse pointer relative to the picture box
-        int x = e.X;
-        int y = e.Y;
-
-        // Define the brush size (thickness of the line)
-        int brushSize = 5; // Adjust as needed
-
-        // Loop through the pixels around the current pixel
-        for (int i = x - brushSize / 2; i <= x + brushSize / 2; i++)
         {
-            for (int j = y - brushSize / 2; j <= y + brushSize / 2; j++)
+            if (originalImage == null)
             {
-                // Check if the pixel is within the bounds of the image
-                if (i >= 0 && i < originalImage.Width && j >= 0 && j < originalImage.Height)
-                {
-                    // Color the pixel at the current position with the selected color
-                    originalImage.SetPixel(i, j, selectedColor);
-                }
+                MessageBox.Show("Please select an image first.");
+                return;
             }
+
+            // Subscribe to the mouse move event of the original image picture box
+            pictureBoxOriginal.MouseMove += pictureBoxOriginal_MouseMoveForBrush;
         }
 
-        // Refresh the picture box to display the updated image
-        pictureBoxOriginal.Refresh();
-    }
-}
+        private void pictureBoxOriginal_MouseMoveForBrush(object sender, MouseEventArgs e)
+        {
+            if (originalImage == null)
+                return;
+
+            // Check if the left mouse button is pressed
+            if (e.Button == MouseButtons.Left)
+            {
+                // Get the coordinates of the mouse pointer relative to the picture box
+                int x = e.X;
+                int y = e.Y;
+
+                // Define the brush size (thickness of the line)
+                int brushSize = 5; // Adjust as needed
+
+                // Loop through the pixels around the current pixel
+                for (int i = x - brushSize / 2; i <= x + brushSize / 2; i++)
+                {
+                    for (int j = y - brushSize / 2; j <= y + brushSize / 2; j++)
+                    {
+                        // Check if the pixel is within the bounds of the image
+                        if (i >= 0 && i < originalImage.Width && j >= 0 && j < originalImage.Height)
+                        {
+                            // Color the pixel at the current position with the selected color
+                            originalImage.SetPixel(i, j, selectedColor);
+                        }
+                    }
+                }
+
+                // Refresh the picture box to display the updated image
+                pictureBoxOriginal.Refresh();
+            }
+        }
 
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -248,8 +259,16 @@ private void pictureBoxOriginal_MouseMoveForBrush(object sender, MouseEventArgs 
                 selectedColor = colorDialog.Color;
             }
         }
-        
-        
-        
+        private void ConToGrayscale(String image)
+        {
+            Mat grayscaleImage = new Mat();
+            Mat imagetest = CvInvoke.Imread(image, ImreadModes.AnyColor);
+            CvInvoke.CvtColor(imagetest, grayscaleImage,
+            ColorConversion.Bgr2Gray);
+            CvInvoke.Imshow("Gray Image", grayscaleImage);
+            CvInvoke.WaitKey(0);
+        }
+
+
     }
 }

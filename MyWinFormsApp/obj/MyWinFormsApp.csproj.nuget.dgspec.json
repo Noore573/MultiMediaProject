@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj": {}
+    "d:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj": {}
   },
   "projects": {
-    "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj": {
+    "d:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj",
+        "projectUniqueName": "d:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj",
         "projectName": "MyWinFormsApp",
-        "projectPath": "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj",
+        "projectPath": "d:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\obj\\",
+        "outputPath": "d:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -44,6 +44,10 @@
           "targetAlias": "net8.0-windows",
           "dependencies": {
             "Emgu.CV": {
+              "target": "Package",
+              "version": "[4.9.0.5494, )"
+            },
+            "Emgu.CV.Bitmap": {
               "target": "Package",
               "version": "[4.9.0.5494, )"
             }
