@@ -15,6 +15,7 @@ static class Program
         f.Size=new Size(800,600);
         // Test 
         Application.Run(new MainForm());
+        f.GetTotal
 
     }    
 }

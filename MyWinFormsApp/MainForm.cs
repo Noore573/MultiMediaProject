@@ -99,29 +99,30 @@ namespace MyWinFormsApp
 
 
         private void btnBrowse_Click(object sender, EventArgs e)
-{
-    OpenFileDialog openFileDialog = new OpenFileDialog();
-    openFileDialog.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif;*.tif;*.tiff";
-
-    if (openFileDialog.ShowDialog() == DialogResult.OK)
-    {
-        // Load the original image using Bitmap
-        originalImage = new Bitmap(openFileDialog.FileName);
-
-        // Convert the original image to grayscale using Emgu.CV
-        using (Mat imagetest = CvInvoke.Imread(openFileDialog.FileName, ImreadModes.AnyColor))
         {
-            grayscale = new Mat();
-            CvInvoke.CvtColor(imagetest, grayscale, ColorConversion.Bgr2Gray);
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif;*.tif;*.tiff";
 
-            // Convert the grayscale Mat to a Bitmap for display
-            Bitmap grayscaleImage = grayscale.ToBitmap();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Load the original image using Bitmap
+                originalImage = new Bitmap(openFileDialog.FileName);
 
-            // Display the grayscale image in pictureBoxOriginal
-            pictureBoxOriginal.Image = grayscaleImage;
+                // Convert the original image to grayscale using Emgu.CV
+                using (Mat imagetest = CvInvoke.Imread(openFileDialog.FileName, ImreadModes.AnyColor))
+                {
+                    grayscale = new Mat();
+                    CvInvoke.CvtColor(imagetest, grayscale, ColorConversion.Bgr2Gray);
+
+                    // Convert the grayscale Mat to a Bitmap for display
+                    Bitmap grayscaleImage = grayscale.ToBitmap();
+
+                    // Display the grayscale image in pictureBoxOriginal
+                    pictureBoxOriginal.Image = grayscaleImage;
+                }
+            }
+            GetTotalPixelValue(grayscale);
         }
-    }
-}
 
 
         private void pictureBoxOriginal_MouseDown(object sender, MouseEventArgs e)
@@ -251,23 +252,40 @@ namespace MyWinFormsApp
             }
         }
 
-        private void btnChooseColor_Click(object sender, EventArgs e)
-        {
-            ColorDialog colorDialog = new ColorDialog();
-            if (colorDialog.ShowDialog() == DialogResult.OK)
-            {
-                selectedColor = colorDialog.Color;
-            }
-        }
-        private void ConToGrayscale(String image)
-        {
-            Mat grayscaleImage = new Mat();
-            Mat imagetest = CvInvoke.Imread(image, ImreadModes.AnyColor);
-            CvInvoke.CvtColor(imagetest, grayscaleImage,
-            ColorConversion.Bgr2Gray);
-            CvInvoke.Imshow("Gray Image", grayscaleImage);
-            CvInvoke.WaitKey(0);
-        }
+        // public long GetTotalPixelValue(Mat image)
+        // {
+        //     // Check if the Mat has only one channel (grayscale)
+        //     if (image.Channels != 1)
+        //     {
+        //         throw new ArgumentException("This function expects a single-channel grayscale image.");
+        //     }
+
+        //     // Convert the Mat to a Bitmap for internal processing (optional)
+        //     using (Bitmap grayscaleImage = image.ToBitmap()) // Use using block for grayscaleImage
+        //     {
+        //         // You can perform additional processing on the grayscaleImage here if needed
+        //     }
+
+        //     // Calculate the total number of pixels
+        //     long totalPixels = image.Width * image.Height;
+
+        //     // Get the pointer to the first pixel data
+        //     byte* imageData = (byte*)image.DataPointer;
+
+        //     // Initialize a variable to store the sum of all pixel values
+        //     long totalValue = 0;
+
+        //     // Loop through each pixel and accumulate the values
+        //     for (long i = 0; i < totalPixels; i++)
+        //     {
+        //         totalValue += imageData[i];
+        //     }
+
+        //     return totalValue;
+        // }
+
+
+
 
 
     }
