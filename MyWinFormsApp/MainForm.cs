@@ -1,6 +1,14 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
+using Emgu.CV;
+using Emgu.CV.CvEnum;
+using Emgu.CV.Structure;
 
 namespace MyWinFormsApp
 {
@@ -240,5 +248,8 @@ private void pictureBoxOriginal_MouseMoveForBrush(object sender, MouseEventArgs 
                 selectedColor = colorDialog.Color;
             }
         }
+        
+        
+        
     }
 }
