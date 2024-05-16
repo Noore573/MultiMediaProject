@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj": {}
+    "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj": {}
   },
   "projects": {
-    "d:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj": {
+    "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj",
+        "projectUniqueName": "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj",
         "projectName": "MyWinFormsApp",
-        "projectPath": "d:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj",
+        "projectPath": "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "d:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\obj\\",
+        "outputPath": "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/nr6+2H3tC46c6ddUL/ojypxGhN5li3o7lkS9oLkUWZwYFqjD9mD/BBa9dR+ADD4gWwOQMYEkGTOSIiTzc/uOQ==",
+  "dgSpecHash": "ovhMh5UawhMsC/6bNN6pJzd2Ha4hyF+FL6vT1LK75hziJABfRaLczFTMIsdgEkPSDhXVT29vK2tlHV0uUttckQ==",
   "success": true,
-  "projectFilePath": "d:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj",
+  "projectFilePath": "D:\\دراسة 8\\C#+mulitmedia\\TheProject\\homework\\MyWinFormsApp\\MyWinFormsApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\emgu.cv\\4.9.0.5494\\emgu.cv.4.9.0.5494.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\emgu.cv.bitmap\\4.9.0.5494\\emgu.cv.bitmap.4.9.0.5494.nupkg.sha512",

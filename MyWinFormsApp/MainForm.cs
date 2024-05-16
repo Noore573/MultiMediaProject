@@ -121,7 +121,7 @@ namespace MyWinFormsApp
                     pictureBoxOriginal.Image = grayscaleImage;
                 }
             }
-            GetTotalPixelValue(grayscale);
+            // GetTotalPixelValue(grayscale);
         }
 
 
@@ -249,6 +249,14 @@ namespace MyWinFormsApp
             {
                 originalImage.Save(saveFileDialog.FileName);
                 MessageBox.Show("Colored image saved successfully.");
+            }
+        }
+        private void btnChooseColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                selectedColor = colorDialog.Color;
             }
         }
 
